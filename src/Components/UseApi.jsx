@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PrefCheckBox } from './PrefCheckBox';
 import axios from 'axios';
+import { showGraph } from './ShowGraph';
 
 export const UseApi = () => {
   const [prefectures, setPreFectures] = useState(null);
@@ -63,6 +64,7 @@ export const UseApi = () => {
     <main>
       <h2>都道府県</h2>
       {prefectures && <PrefCheckBox prefectures={prefectures.result} onChange={clickCheckBox} />}
+      <showGraph></showGraph>
     </main>
   );
 };
