@@ -1,12 +1,12 @@
 import React from 'react';
-import { PrefCheckBox } from './Components/PrefCheckBox';
 import './App.css';
+import { UseApi } from './Components/UseApi';
 
 function App() {
   return (
     <div className="App">
       <h2>Title</h2>
-      <PrefCheckBox></PrefCheckBox>
+      <UseApi></UseApi>
     </div>
   );
 }
