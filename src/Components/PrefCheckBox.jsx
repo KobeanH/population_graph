@@ -11,8 +11,9 @@ export const PrefCheckBox = (props) => {
             onChange={(event) =>
               props.onChange(prefecture.prefName, prefecture.prefCode, event.target.checked)
             }
+            id={'checkbox' + prefecture.prefCode}
           />
-          <label>{prefecture.prefName}</label>
+          <label htmlFor={'checkbox' + prefecture.prefCode}>{prefecture.prefName}</label>
         </li>
       ))}
       ;

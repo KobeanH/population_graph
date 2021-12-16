@@ -49,6 +49,14 @@ export const UseApi = () => {
           return;
         });
     }
+    // チェックを外すとグラフから削除
+    else {
+      const deleteIndex = eachPrefPopulation.findIndex((value) => value.prefName === prefName);
+      if (deleteIndex === -1) return;
+      eachPrefPopulation.splice(deleteIndex, 1);
+      setPrefPopulation(eachPrefPopulation);
+      console.log(eachPrefPopulation);
+    }
   };
 
   return (
