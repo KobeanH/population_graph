@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PrefCheckBox } from './PrefCheckBox';
+import { ShowGraph } from './ShowGraph';
 import axios from 'axios';
-import { showGraph } from './ShowGraph';
 
 export const UseApi = () => {
   const [prefectures, setPreFectures] = useState(null);
@@ -20,11 +20,11 @@ export const UseApi = () => {
       });
   }, []);
 
-  const [prefPopulation, setPrefPopulation] = useState([]);
+  const [population, setPopulation] = useState([]);
 
   // チェックボックスをクリックした際の処理
   const clickCheckBox = (prefName, prefCode, check) => {
-    let eachPrefPopulation = prefPopulation.slice();
+    let eachPrefPopulation = population.slice();
 
     // チェックをつけると都道府県別の人口取得
     if (check) {
@@ -42,7 +42,7 @@ export const UseApi = () => {
             prefName: prefName,
             data: results.data.result.data[0].data,
           });
-          setPrefPopulation(eachPrefPopulation);
+          setPopulation(eachPrefPopulation);
           console.log(eachPrefPopulation);
         })
         .catch((error) => {
@@ -55,7 +55,7 @@ export const UseApi = () => {
       const deleteIndex = eachPrefPopulation.findIndex((value) => value.prefName === prefName);
       if (deleteIndex === -1) return;
       eachPrefPopulation.splice(deleteIndex, 1);
-      setPrefPopulation(eachPrefPopulation);
+      setPopulation(eachPrefPopulation);
       console.log(eachPrefPopulation);
     }
   };
@@ -64,7 +64,7 @@ export const UseApi = () => {
     <main>
       <h2>都道府県</h2>
       {prefectures && <PrefCheckBox prefectures={prefectures.result} onChange={clickCheckBox} />}
-      <showGraph></showGraph>
+      <ShowGraph prefPopulation={population} />
     </main>
   );
 };
