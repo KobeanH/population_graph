@@ -4,14 +4,13 @@ import HighchartsReact from 'highcharts-react-official';
 
 export const ShowGraph = ({ prefPopulation }) => {
   let series = [];
-  let categories = [];
+  let categories = ['', '', 1980, '', 1990, '', 2000, '', 2010, '', 2020];
 
   for (let pop of prefPopulation) {
     let data = [];
 
     for (let pop_data of pop.data) {
       data.push(pop_data.value);
-      categories.push(pop_data.year);
     }
 
     series.push({
@@ -55,6 +54,13 @@ export const ShowGraph = ({ prefPopulation }) => {
       },
     },
     series: series,
+    plotOptions: {
+      series: {
+        marker: {
+          enabled: false,
+        },
+      },
+    },
   };
 
   return (
