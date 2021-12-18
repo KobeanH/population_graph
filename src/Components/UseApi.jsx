@@ -13,7 +13,7 @@ export const UseApi = () => {
         headers: { 'X-API-KEY': process.env.REACT_APP_API_KEY },
       })
       .then((results) => {
-        setPreFectures(results.data.result.slice(0, 18));
+        setPreFectures(results.data);
       })
       .catch((error) => {
         console.log(error);
@@ -40,7 +40,7 @@ export const UseApi = () => {
         .then((results) => {
           eachPrefPopulation.push({
             prefName: prefName,
-            data: results.data.result.data[0].data.slice(2, 13),
+            data: results.data.result.data[0].data,
           });
           setPopulation(eachPrefPopulation);
           console.log(eachPrefPopulation);
@@ -76,7 +76,7 @@ export const UseApi = () => {
     <div style={userApiWrap}>
       <div style={prefWrap}>
         <h3 style={prefWrapTtl}>都道府県</h3>
-        {prefectures && <PrefCheckBox prefectures={prefectures} onChange={clickCheckBox} />}
+        {prefectures && <PrefCheckBox prefectures={prefectures.result} onChange={clickCheckBox} />}
       </div>
       <ShowGraph prefPopulation={population} />
     </div>
