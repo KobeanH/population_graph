@@ -60,11 +60,25 @@ export const UseApi = () => {
     }
   };
 
+  const userApiWrap = {
+    padding: '16px 0px',
+  };
+  const prefWrap = {
+    marginBottom: '32px',
+    padding: '3%',
+  };
+  const prefWrapTtl = {
+    fontWeight: 'initial',
+    textAlign: 'left',
+  };
+
   return (
-    <main>
-      <h2>都道府県</h2>
-      {prefectures && <PrefCheckBox prefectures={prefectures.result} onChange={clickCheckBox} />}
+    <div style={userApiWrap}>
+      <div style={prefWrap}>
+        <h3 style={prefWrapTtl}>都道府県</h3>
+        {prefectures && <PrefCheckBox prefectures={prefectures.result} onChange={clickCheckBox} />}
+      </div>
       <ShowGraph prefPopulation={population} />
-    </main>
+    </div>
   );
 };
