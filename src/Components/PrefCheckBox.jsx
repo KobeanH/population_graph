@@ -4,13 +4,21 @@ export const PrefCheckBox = (props) => {
   const checkList = {
     display: 'flex',
     padding: 0,
-    gap: '8px 24px',
+    gap: '8px 16px',
     flexWrap: 'wrap',
   };
   const checkListItem = {
     listStyle: 'none',
+    width: 60,
   };
 
+  const alphabets = [...Array(26)].map((a, b) => (10 + b).toString(36));
+
+  for (let i = 0; i < props.prefectures.length; ++i) {
+    const aaaaa = alphabets[i].toUpperCase();
+    props.prefectures[i].prefName = aaaaa;
+  }
+  console.log(props.prefectures);
   return (
     <>
       <ul style={checkList}>
