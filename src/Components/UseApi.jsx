@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import { PrefCheckBox } from './PrefCheckBox';
 import { ShowGraph } from './ShowGraph';
-import axios from 'axios';
+
+const prefWrap = {
+  marginBottom: '32px',
+  padding: '3%',
+};
+const prefWrapTtl = {
+  fontSize: 16,
+  fontWeight: 'initial',
+  textAlign: 'left',
+};
 
 export const UseApi = () => {
   const [prefectures, setPreFectures] = useState(null);
@@ -43,7 +54,6 @@ export const UseApi = () => {
             data: results.data.result.data[0].data.slice(2, 13),
           });
           setPopulation(eachPrefPopulation);
-          console.log(eachPrefPopulation);
         })
         .catch((error) => {
           console.log(error);
@@ -52,33 +62,20 @@ export const UseApi = () => {
     }
     // チェックを外すとグラフから削除
     else {
-      const deleteIndex = eachPrefPopulation.findIndex((value) => value.prefName === prefName);
-      if (deleteIndex === -1) return;
-      eachPrefPopulation.splice(deleteIndex, 1);
+      const removeGraph = eachPrefPopulation.findIndex((value) => value.prefName === prefName);
+      if (removeGraph === -1) return;
+      eachPrefPopulation.splice(removeGraph, 1);
       setPopulation(eachPrefPopulation);
-      console.log(eachPrefPopulation);
     }
   };
 
-  const userApiWrap = {
-    padding: '16px 0px',
-  };
-  const prefWrap = {
-    marginBottom: '32px',
-    padding: '3%',
-  };
-  const prefWrapTtl = {
-    fontWeight: 'initial',
-    textAlign: 'left',
-  };
-
   return (
-    <div style={userApiWrap}>
+    <>
       <div style={prefWrap}>
         <h3 style={prefWrapTtl}>都道府県</h3>
         {prefectures && <PrefCheckBox prefectures={prefectures} onChange={clickCheckBox} />}
       </div>
-      <ShowGraph prefPopulation={population} />
-    </div>
+      <ShowGraph population={population} />
+    </>
   );
 };

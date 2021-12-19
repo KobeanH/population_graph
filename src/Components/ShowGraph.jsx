@@ -2,17 +2,16 @@ import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-export const ShowGraph = ({ prefPopulation }) => {
+export const ShowGraph = ({ population }) => {
   let series = [];
   let categories = ['', '', 1980, '', 1990, '', 2000, '', 2010, '', 2020];
 
-  for (let pop of prefPopulation) {
+  for (let pop of population) {
     let data = [];
 
     for (let pop_data of pop.data) {
       data.push(pop_data.value);
     }
-
     series.push({
       type: 'line',
       name: pop.prefName,
@@ -64,8 +63,8 @@ export const ShowGraph = ({ prefPopulation }) => {
   };
 
   return (
-    <div>
+    <>
       <HighchartsReact highcharts={Highcharts} options={options} />
-    </div>
+    </>
   );
 };
