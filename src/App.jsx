@@ -7,6 +7,7 @@ const app = {
   maxWidth: '1080px',
   margin: '0 auto',
   border: '1px solid #000',
+  textAlign: 'center',
 };
 const appTtl = {
   margin: 0,
@@ -16,9 +17,9 @@ const appTtl = {
 
 function App() {
   return (
-    <div className="App" style={app}>
+    <div style={app}>
       <h2 style={appTtl}>Title</h2>
-      <UseApi></UseApi>
+      <UseApi />
     </div>
   );
 }
